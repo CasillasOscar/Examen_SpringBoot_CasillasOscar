@@ -34,7 +34,7 @@ public class ReservaService {
 
                 if(usuarioExist.isPresent()){
                     //Comprobamos si hay una reserva con checkout antes al checkin que queremos
-                    Optional<Reserva> reservaExist = reservaRepository.getReservaById_HabitacionEqualsAndFechaCheckoutIsBeforeAndBorradoNull(reserva.getIdHabitacion(),reserva.getFecha_inicio());
+                    Optional<Reserva> reservaExist = reservaRepository.getReservaByIdHabitacionEqualsAndFechaCheckoutIsBeforeAndBorradoNull(habitacionExist.get(),reserva.getFecha_inicio());
 
                     if(reservaExist.isPresent()){
 

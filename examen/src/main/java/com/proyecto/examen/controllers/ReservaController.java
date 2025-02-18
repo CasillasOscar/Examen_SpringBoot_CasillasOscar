@@ -21,7 +21,7 @@ public class ReservaController {
 
         if(id_habitacion.contentEquals(reserva.getIdHabitacion())){
 
-            ResponseEntity.ok(reservaService.hacerReserva(reserva));
+            return ResponseEntity.ok(reservaService.hacerReserva(reserva)); //Me faltaba un return
 
         } else {
 
@@ -29,7 +29,6 @@ public class ReservaController {
 
         }
 
-        return null;
     }
 
 }

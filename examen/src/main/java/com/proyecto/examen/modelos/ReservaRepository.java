@@ -14,7 +14,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
 
     Optional<Reserva> getReservaById(Integer id);
 
-    //Falla porque no puede crear la consulta, el problema que da con el id porque estan todos los bean correctos
-    Optional<Reserva> getReservaByIdHabitacionEqualsAndFechaCheckoutIsBeforeAndBorradoNull(@NotNull Habitacione idHabitacion, @NotNull LocalDateTime fechaCheckout);
+    Optional<Reserva> getReservaByIdHabitacionEqualsAndFechaCheckoutIsAfterAndBorradoNull(Habitacione habitacione, LocalDateTime fechaInicio);
+    //Tenia que ser after y no before
 
 }

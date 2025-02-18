@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -18,11 +19,13 @@ public class Habitacione {
 
     @Size(max = 50)
     @Column(name = "tipo", length = 50)
-    @Pattern(regexp = "^\\w$", message = "Solo acepta alfanumericos")
+   // @Pattern(regexp = "^\\w$", message = "Solo acepta alfanumericos") MAL me falta el +
+    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Solo acepta alfanumericos")
     private String tipo;
 
     @Column(name = "planta")
-    @Pattern(regexp = "^[0-9]$",message = "Solo puede ser un numero de un digito")
+    @Digits(integer = 1,  message = "Solo uno", fraction = 0)
+//    @Pattern(regexp = "^[0-9]$",message = "Solo puede ser un numero de un digito")MAL
     private Integer planta;
 
     @Column(name = "numero")

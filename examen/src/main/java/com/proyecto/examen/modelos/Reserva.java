@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reservas")
-//@JsonIgnoreProperties({"idHabitacion", "idusuario"})
+@JsonIgnoreProperties({"idHabitacion", "idUsuario"})
 public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,20 +23,20 @@ public class Reserva {
     @JoinColumn(name = "id_habitacion", nullable = false)
     private Habitacione idHabitacion;
 
-//    @JsonProperty("Id_Habitacion")
-//    public String getId_Habitacion(){
-//        return idHabitacion != null ? idHabitacion.getIdHabitacion() : null;
-//    }
+    @JsonProperty("Id_Habitacion")
+    public String getId_Habitacion(){
+        return idHabitacion != null ? idHabitacion.getIdHabitacion() : null;
+    }
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private com.proyecto.examen.modelos.Usuario idUsuario;
 
-//    @JsonProperty("id_usuario")
-//    public Integer getId_Usuario(){
-//        return idUsuario != null ? idUsuario.getId() : null;
-//    }
+    @JsonProperty("id_usuario")
+    public Integer getId_Usuario(){
+        return idUsuario != null ? idUsuario.getId() : null;
+    }
 
     @NotNull
     @Column(name = "fecha_checkin", nullable = false)

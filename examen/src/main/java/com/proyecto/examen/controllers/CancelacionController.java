@@ -1,6 +1,7 @@
 package com.proyecto.examen.controllers;
 
 import com.proyecto.examen.exceptions.CustomException;
+import com.proyecto.examen.modelos.CancelacionDTO;
 import com.proyecto.examen.modelos.HistorialReserva;
 import com.proyecto.examen.modelos.Reserva;
 import com.proyecto.examen.services.CancelacionService;
@@ -21,19 +22,23 @@ public class CancelacionController {
     CancelacionService cancelacionService;
 
     @PostMapping("/{id_habitacion}/{id_cliente}")
-    public ResponseEntity<?> cancelar(@PathVariable String id_habitacion, @PathVariable Integer id_cliente, @Valid @RequestBody Reserva cancelacion, @Valid @RequestBody HistorialReserva historial_reserva) throws CustomException {
+    public ResponseEntity<?> cancelar(
+            @PathVariable String id_habitacion,
+            @PathVariable Integer id_cliente,
+            @Valid @RequestBody CancelacionDTO cancelacion) throws CustomException
+    {
         if(
-                id_habitacion.contentEquals(cancelacion.getIdHabitacion().getIdHabitacion()) &&
-                        Objects.equals(id_cliente, cancelacion.getIdHabitacion().getIdHabitacion()))
+                id_habitacion.contentEquals(cancelacion.getId_habitacion()) &&
+                        Objects.equals(id_cliente, cancelacion.getId_cliente()))
         {
 
-            ResponseEntity.ok(cancelacionService.realizarCancelacion(cancelacion, historial_reserva));
+            return ResponseEntity.ok(cancelacionService.realizarCancelacion(cancelacion));
 
         } else {
 
             throw new CustomException("La habitación o el clientre en la URI y la de la reserva no es la misma");
 
         }
-        return null;
+        //return null; sobra y falta el return del responseEntity
     }
 }
